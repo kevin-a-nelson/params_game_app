@@ -29,13 +29,17 @@ class Api::UrlInputController < ApplicationController
     else
       game_logic(user_input.to_i, random_num)
     end
-
     render 'guess_game.json.jb'
+  end
+
+  def url_segment_method
+    @message = params[:this_is_a_variable]
+    render 'segment_view.json.jb'
   end
 
   private
 
-  def number?(input)
-    input.match(/\d/)
-  end
+    def number?(input)
+      input.match(/\d/)
+    end
 end
