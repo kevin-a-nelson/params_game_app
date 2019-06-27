@@ -24,14 +24,10 @@ class Api::UrlInputController < ApplicationController
     @guess = user_input
     if user_input.nil?
       @message = 'make a guess by typing ?guess=number in the url'
-      render 'guess_game.json.jb'
-      return
-    end
-
-    if number?(user_input)
-      game_logic(user_input.to_i, random_num)
-    else
+    elsif !number?(user_input)
       @message = 'your guess must be a number'
+    else
+      game_logic(user_input.to_i, random_num)
     end
 
     render 'guess_game.json.jb'
